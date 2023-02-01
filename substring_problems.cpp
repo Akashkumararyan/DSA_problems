@@ -70,3 +70,131 @@ int countPrefixes(vector<string>& words, string s) {
         return cnt;
      
     }
+
+
+
+#include <iostream>
+
+int main() {
+  std::cout << "Hello World!\n";
+}
+
+
+1967. Number of Strings That Appear as Substrings in Word
+
+
+Example 1:
+
+Input: patterns = ["a","abc","bc","d"], word = "abc"
+Output: 3
+Explanation:
+- "a" appears as a substring in "abc".
+- "abc" appears as a substring in "abc".
+- "bc" appears as a substring in "abc".
+- "d" does not appear as a substring in "abc".
+3 of the strings in patterns appear as a substring in word.
+Example 2:
+
+Input: patterns = ["a","b","c"], word = "aaaaabbbbb"
+Output: 2
+Explanation:
+- "a" appears as a substring in "aaaaabbbbb".
+- "b" appears as a substring in "aaaaabbbbb".
+- "c" does not appear as a substring in "aaaaabbbbb".
+2 of the strings in patterns appear as a substring in word.
+Example 3:
+
+Input: patterns = ["a","a","a"], word = "ab"
+Output: 3
+Explanation: Each of the patterns appears as a substring in word "ab".
+
+
+  
+        for(int i =0; i<word.size(); i++){
+            string str = "";
+            for(int j = i; j<word.size(); j++){
+                str += word[j];
+                s.push_back(str);
+            }
+        }
+        
+        set<string> st;
+        for(int i =0; i<s.size(); i++){
+            st.insert(s[i]);
+        }
+        //  for(auto it:st){
+        //     cout<<it<<endl;
+        // }
+        for(auto j : st){
+                
+            for(int i=0;i< pa.size();i++){
+
+                    if(j == pa[i]){
+                        cout<<pa[i]<<" "<<j<<endl;
+                        cnt++;
+                    }
+            }
+        }
+        return cnt;
+    }
+
+
+1876. Substrings of Size Three with Distinct Characters
+
+
+Example 1:
+
+Input: s = "xyzzaz"
+Output: 1
+Explanation: There are 4 substrings of size 3: "xyz", "yzz", "zza", and "zaz". 
+The only good substring of length 3 is "xyz".
+Example 2:
+
+Input: s = "aababcabc"
+Output: 4
+Explanation: There are 7 substrings of size 3: "aab", "aba", "bab", "abc", "bca", "cab", and "abc".
+The good substrings are "abc", "bca", "cab", and "abc".
+
+
+
+  int countGoodSubstrings(string s) {
+        int cnt=0;
+        if(s.size()<=2) return cnt;
+
+        for(int i=0;i<s.size()-2;i++){
+            if(s[i] != s[i+1] && s[i+1] != s[i+2] && s[i] != s[i+2])
+            cnt++;
+        }
+        return cnt;
+    }
+
+
+520. Detect Capital
+
+Example 1:
+
+Input: word = "USA"
+Output: true
+Example 2:
+
+Input: word = "FlaG"
+Output: false
+
+ bool detectCapitalUse(string word) {
+        int cnt=0;
+        if(word.size()==1) return true;
+        for(int i=0;i<word.size();i++){
+            if(word[i]>=65 && word[i]<=90)
+                cnt++;
+        }
+        if(cnt==1 && isupper(word[0]))
+          return true;
+        else if(cnt==0 || cnt==word.size())
+          return true;
+        else return false;    
+    }
+
+
+
+
+
