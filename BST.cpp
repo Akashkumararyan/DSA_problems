@@ -376,3 +376,39 @@ public:
         solve(root);
         return root;
     }
+
+
+
+   669. Trim a Binary Search Tree
+   
+   Input: root = [1,0,2], low = 1, high = 2
+Output: [1,null,2]
+Example 2:
+
+
+Input: root = [3,0,4,null,2,null,null,1], low = 1, high = 3
+Output: [3,2,null,1]
+
+ TreeNode* trimBST(TreeNode* root, int low, int high) {
+        return solve(root,low,high);
+    }
+
+    TreeNode* solve(TreeNode* root,int low,int high){
+        if(root==NULL) return NULL;
+        TreeNode* l=solve(root->left,low,high);
+        if(l != root->left){
+            root->left=l;
+        }
+        TreeNode* r=solve(root->right,low,high);
+         if(r != root->right){
+            root->right=r;
+        }
+        if(root->val>high || root->val<low){
+            return (root->left)?root->left:root->right;
+        }
+        return root;
+    }
+};
+
+
+
