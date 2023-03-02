@@ -140,3 +140,95 @@ bool searchMatrix(vector<vector<int>>& matrix, int target) {
         return 0;
     }
 };
+
+
+1337. The K Weakest Rows in a Matrix
+
+Input: mat = 
+[[1,1,0,0,0],
+ [1,1,1,1,0],
+ [1,0,0,0,0],
+ [1,1,0,0,0],
+ [1,1,1,1,1]], 
+k = 3
+Output: [2,0,3]
+Explanation: 
+The number of soldiers in each row is: 
+- Row 0: 2 
+- Row 1: 4 
+- Row 2: 1 
+- Row 3: 2 
+- Row 4: 5 
+The rows ordered from weakest to strongest are [2,0,3,1,4].
+
+vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
+      int row=mat.size();
+      int col=mat[0].size();
+      vector<int> v;
+      set<pair<int,int>> s;
+      for(int i=0;i<row;i++){
+          int cnt=count(mat[i].begin(),mat[i].end(),1);
+          s.insert({cnt,i});
+      }
+      for(auto it:s){
+          if(k==0)
+          break;
+          v.push_back(it.second);
+          --k;
+      }
+      return v;  
+    }
+};
+
+1380. Lucky Numbers in a Matrix
+
+Input: matrix = [[3,7,8],[9,11,13],[15,16,17]]
+Output: [15]
+Explanation: 15 is the only lucky number since it is the minimum in its row and the maximum in its column.
+Example 2:
+
+Input: matrix = [[1,10,4,2],[9,3,8,7],[15,16,17,12]]
+Output: [12]
+Explanation: 12 is the only lucky number since it is the minimum in its row and the maximum in its column.
+
+ vector<int> luckyNumbers (vector<vector<int>>& matrix) {
+     int m=matrix.size();
+     int n=matrix[0].size();
+     int max_n=INT_MIN;
+     for(int i=0;i<m;i++){
+     int min_n=INT_MAX;
+         for(int j=0;j<n;++j)
+             min_n=min(min_n,matrix[i][j]);
+             max_n=max(min_n,max_n);
+     }
+     int min_n=INT_MAX;
+     for(int j=0;j<n;++j){
+         int max_n=INT_MIN;
+         for(int i=0;i<m;i++)
+             max_n=max(max_n,matrix[i][j]);
+             min_n=min(max_n,min_n);
+     }
+        if(min_n!=max_n) return vector<int> { };
+        return vector<int>{min_n};
+    }
+    
+    867. Transpose Matrix
+    
+    Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+Output: [[1,4,7],[2,5,8],[3,6,9]]
+
+vector<vector<int>> transpose(vector<vector<int>>& matrix) {
+        
+        int row=matrix.size();
+        int col=matrix[0].size();
+        vector<vector<int>> ans(col,vector<int> (row,0));
+
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                ans[j][i]=matrix[i][j];
+            }
+        }
+        return ans;
+    }
+};
+
