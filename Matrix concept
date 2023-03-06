@@ -282,3 +282,51 @@ bool checkXMatrix(vector<vector<int>>& grid) {
         return true;
     }
 };
+
+59. Spiral Matrix II
+
+Input: n = 3
+Output: [[1,2,3],[8,9,4],[7,6,5]]
+Example 2:
+
+Input: n = 1
+Output: [[1]]
+
+
+ vector<vector<int>> ans(n, vector<int> (n, 1));
+        int left = 0, right = n-1, top = 0, down = n-1, index = 1;
+        
+        while (left <= right && top <= down) {
+            //first row
+            for (int j = left; j <= right; j++) {
+                ans[top][j] = index;
+                index++;
+            }
+                
+            top++;
+            
+            //last col
+            for (int i = top; i <= down; i++) {
+                ans[i][right] = index;
+                index++;
+            }
+            
+            right--;
+            
+            //last row
+            for (int j = right; j >= left; j--) {
+                ans[down][j] = index;
+                index++;
+            }
+            
+            down--;
+            
+            //first col
+            for (int i = down; i >= top; i--) {
+                ans[i][left] = index;
+                index++;
+            }
+            
+            left++;
+        }
+        return ans;
