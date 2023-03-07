@@ -384,3 +384,39 @@ bool isMonotonic(vector<int>& nums) {
         if(v1==nums || v2==nums) return true;
         return false;
     }
+
+
+2165. Smallest Value of the Rearranged Number
+
+Input: num = 310
+Output: 103
+Explanation: The possible arrangements for the digits of 310 are 013, 031, 103, 130, 301, 310. 
+The arrangement with the smallest value that does not contain any leading zeros is 103.
+Example 2:
+
+Input: num = -7605
+Output: -7650
+Explanation: Some possible arrangements for the digits of -7605 are -7650, -6705, -5076, -0567.
+The arrangement with the smallest value that does not contain any leading zeros is -7650.
+  
+  
+  long long smallestNumber(long long num) {
+        if(num<0){
+           string s=to_string(-num);
+           sort(s.rbegin(),s.rend());
+           return -stoll(s); 
+        }
+        else if(num==0) return 0;
+        
+        string s=to_string(num);
+        sort(s.begin(),s.end());
+        int i=0;
+        while(s[i]=='0')
+          i++;
+        char c = s[i];
+          s.erase(s.begin() + i);
+          s = c + s;
+          
+        return stoll(s);
+    }
+};
