@@ -332,3 +332,31 @@ Explanation: The only possible set you can choose is {7}. This will make the new
         }
         return ans;
     }
+
+
+
+     75. Sort Colors
+     
+     Input: nums = [2,0,2,1,1,0]
+Output: [0,0,1,1,2,2]
+Example 2:
+
+Input: nums = [2,0,1]
+Output: [0,1,2]
+
+  void sortColors(vector<int>& nums) {
+        map<int,int> mp;
+        for(int i=0;i<nums.size();i++){
+            mp[nums[i]]++;
+        }
+        
+        nums.clear();
+        for(auto x:mp){
+            for(int i=0;i<x.second;i++){
+                nums.push_back(x.first);
+            }
+        }
+    }
+};
+
+
