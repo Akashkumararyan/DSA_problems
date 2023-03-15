@@ -532,4 +532,40 @@ Output: 1
     }
 
 
+958. Check Completeness of a Binary Tree
+
+Input: root = [1,2,3,4,5,6]
+Output: true
+Explanation: Every level before the last is full (ie. levels with node-values {1} and {2, 3}), and all nodes in the last level ({4, 5, 6}) are as far left as possible.
+Example 2:
+
+
+Input: root = [1,2,3,4,5,null,7]
+Output: false
+Explanation: The node with value 7 isn't as far left as possible.
+  
+  
+   bool isCompleteTree(TreeNode* root) {
+        queue<TreeNode*> q;
+        q.push(root);
+       int i=0,f=0;
+
+       while(!q.empty()){
+           auto node=q.front();
+           q.pop();
+
+           if(f && node != NULL) return false;
+           if(node==NULL){
+               f=1;
+               continue;
+           }
+           q.push(node->left);
+           q.push(node->right);
+       }
+       return true;
+    }
+};
+
+
+
 
