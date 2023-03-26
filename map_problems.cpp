@@ -475,3 +475,35 @@ Note that [5, 1] may also be returned.
 };
 
 
+
+1347. Minimum Number of Steps to Make Two Strings Anagram
+
+
+Example 1:
+
+Input: s = "bab", t = "aba"
+Output: 1
+Explanation: Replace the first 'a' in t with b, t = "bba" which is anagram of s.
+Example 2:
+
+Input: s = "leetcode", t = "practice"
+Output: 5
+Explanation: Replace 'p', 'r', 'a', 'i' and 'c' from t with proper characters to make t anagram of s.
+Example 3:
+
+Input: s = "anagram", t = "mangaar"
+Output: 0
+Explanation: "anagram" and "mangaar" are anagrams. 
+	
+	
+	
+	int minSteps(string s, string t) {
+        map<char,int> m;
+        for(auto a:s) m[a]++;
+        for(auto a:t) m[a]--;
+        int ans=0;
+        for(auto x:m) ans += abs(x.second);
+
+        return ans/2;
+    }
+};
